@@ -40,8 +40,7 @@ int main ()
     		}
 		}
 	}
-	switch (op){
-		case '+': {
+	if(op=='+'){
 			cin >> rows2;
 			op=cin.get();
 			cin >> columns2;
@@ -66,9 +65,9 @@ int main ()
 				}
 			}
 			else cout << "An error has occured while reading input data";	
-			break;
 		}
-		case '-': {
+	else if(op=='-')
+	{
 			cin >> rows2;
 			op=cin.get();
 			cin >> columns2;
@@ -93,9 +92,8 @@ int main ()
 				}
 			}
 			else cout << "An error has occured while reading input data";	
-			break;
 		}
-		case '*': {
+		else if(op== '*') {
 			cin >> rows2;
 			op=cin.get();
 			cin >> columns2;
@@ -124,20 +122,17 @@ int main ()
 	 			std::cout << std::endl;	
 	 			k=1;
 			}
-			else cout << "An error has occured while reading input data";	
-	 		break;
+			else cout << "An error has occured while reading input data";
 		}
-		case 'T': {
+		else if(op=='T') {
 			for (int i=0; i<rows1; i++){
 				k=1;
 				for (int j=0; j<columns1; j++){		
 					matrix[j][i]=matrix1[i][j];
 				}
-			}	
-			break;
+			}
 		}
-		//float** gaus_obr(int cnt_str, float **mass, float **M_obr) {matrix=gaus_obr(rows1, matrix1, matrix);
-		case 'R': {
+		else if(op=='R') {
 			if (columns1==rows1){
 			k=1;	
 			int i, j, k;
@@ -176,12 +171,10 @@ int main ()
 		    } 
 	    }	
 	    
-}	
+    }	
 
-			else cout << "An error has occured while reading input data";		
-			break;
+			else cout << "An error has occured while reading input data";
 		}
-	}
 	cout << endl;
 	if (op == 'T') {
 		for (int i=0; i<columns1; i++){
