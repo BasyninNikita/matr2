@@ -1,102 +1,199 @@
 #include <iostream>
-#include <string>
-#include <sstream>
 using namespace std;
-bool proverka(float mat[][]){
-   string str;
-   getline(cin, str);
-   istringstream stream(str);
-   unsigned int i;
-   unsigned int f;
-   stream >> i;
-   stream.ignore( numeric_limits<streamsize>::max(), ',' );
-   stream >> f;
-    
-    float **matrix = new float *[rows];
-    for( int i = 0; i < rows; ++i ) {
-        matrix[ i ] = new float[ columns ];
-        for( int j = 0; j < columns; ++j ) {
-            matrix[i][j] = 0.0;
-        }
-    }
-}
-int main()
+float **matrix, **matrix1, **matrix2;
+int rows1, rows2, columns1, columns2;
+char op, k;
+int main ()
 {
-    int n;int k;
-    cin>>n;cin>>k;
-    int matr[n][k];
-    char op;
-    if (proverka(matr)){
-        cin>>op;
-        if (op=='+')
-        {
-            int n1,k1;
-            cin>>n1;cin>>k1;
-            int matr1[n1][k1];
-            if (n==n1) && (k==k1)
-            {
-                for (int i=0;i<4;i++)
-                {
-                    for(int j=0;j<4;j++)
-                    {
-                        matr[i][j]=matr[i][j]+matr1[i][j];
-                    }
-                }
-            }
-            else cout>>"it's impossible">>endl;
-        }
-        else if (op=='-')
-        {
-            int n1,k1;
-            cin>>n1;cin>>k1;
-            int matr1[n1][k1];
-            if (n==n1) && (k==k1)
-            {
-                for (int i=0;i<4;i++)
-                {
-                    for(int j=0;j<4;j++)
-                    {
-                        matr[i][j]=matr[i][j]+matr1[i][j];
-                    }
-                }
-            }
-            else cout>>"it's impossible">>endl;
-        }
-        else if (op=='*')
-        {
-            if(n==k1)
-            {
-                int resmatr[n][n];int s;
-                for(int i=0; i<n; i++) 
-                {
-                    for(int j=0; j<n; j++) 
-                    {
-                        s = 0;
-                        for(k=0; k<n; j++) 
-                        {
-                            s= s+a[i][k]*b[k][j];
-                        }
-                        c[i][j] = s;
-                    }
-                }
-            }
-            else cout>>"it's impossible">>endl;
-        }
-        else if(op=='T')
-        {
-            int matr2[k][n];
-            for(int i=0; i<n; i++) 
-                {
-                    for(int j=0; j<k; j++) 
-                    {
-                        matr2[i][j]=matr[j][i];
-                        matr2[j][i]=matr[i][j];
-                    }
-                }
-        }
-                        
-            
-            
-        
-}
+	float ** matrix;
+	cin >> rows1;
+	op=cin.get();
+	cin >> columns1;
+	float ** matrix1 = new float *[ rows1 ];
+	for( unsigned int i = 0; i < rows1; ++i ) {
+    	matrix1[ i ] = new float[ columns1 ];
+    	for( unsigned int j = 0; j < columns1; ++j ) {		
+       	 matrix1[ i ][ j ] = 0.0f;
+    	}
+	}
+	for (int i=0; i<rows1; i++) {
+		for (int j=0; j<columns1; j++){		
+			cin >> matrix1[i][j];
+		}
+	}
+	cin >> op;
+	if (op == 'T') {
+		matrix = new float *[ columns1 ];
+		for( unsigned int i = 0; i < columns1; ++i ) {
+    		matrix[ i ] = new float[ rows1 ];
+    		for( unsigned int j = 0; j < rows1; ++j ) {	
+       	 		matrix[ i ][ j ] = 0.0f;
+    		}
+		}
+	}
+	else {
+		matrix = new float *[ rows1 ];
+		for( unsigned int i = 0; i < rows1; ++i ) {
+    		matrix[ i ] = new float[ columns1 ];
+    		for( unsigned int j = 0; j < columns1; ++j ) {		
+       	 		matrix[ i ][ j ] = 0.0f;
+    		}
+		}
+	}
+	if(op=='+'){
+			cin >> rows2;
+			op=cin.get();
+			cin >> columns2;
+			float ** matrix2 = new float *[ rows2 ];
+			for( unsigned int i = 0; i < rows2; ++i ) {
+    			matrix2[ i ] = new float[ columns2 ];
+    			for( unsigned int j = 0; j < columns2; ++j ) {
+       	 			matrix[ i ][ j ] = 0.0f;
+    			}
+			}
+			for (int i=0; i<rows2; i++) {
+				for (int j=0; j<columns2; j++){
+					cin >> matrix2[i][j];
+				}
+			}
+			if (rows1 == rows2 && columns1 == columns2){
+				k=1;
+				for (int i = 0; i<rows1; i++){
+	 				for (int j = 0; j<columns1; j++){		
+	 		  			matrix[i][j] = matrix1[i][j]+matrix2[i][j];
+					}
+				}
+			}
+			else cout << "An error has occured while reading input data";	
+		}
+	else if(op=='-')
+	{
+			cin >> rows2;
+			op=cin.get();
+			cin >> columns2;
+			float ** matrix2 = new float *[ rows2 ];
+			for( unsigned int i = 0; i < rows2; ++i ) {
+    			matrix2[ i ] = new float[ columns2 ];
+    			for( unsigned int j = 0; j < columns2; ++j ) {
+       	 			matrix[ i ][ j ] = 0.0f;
+    			}
+			}
+			for (int i=0; i<rows2; i++) {
+				for (int j=0; j<columns2; j++){
+					cin >> matrix2[i][j];
+				}
+			}
+			if (rows1 == rows2 && columns1 == columns2){
+				k=1;
+				for (int i = 0; i<rows1; i++){
+	 				for (int j = 0; j<columns1; j++){		
+	 		  			matrix[i][j] = matrix1[i][j]-matrix2[i][j];
+					}
+				}
+			}
+			else cout << "An error has occured while reading input data";	
+		}
+		else if(op== '*') {
+			cin >> rows2;
+			op=cin.get();
+			cin >> columns2;
+			float ** matrix2 = new float *[ rows2 ];
+			for( unsigned int i = 0; i < rows2; ++i ) {
+    			matrix2[ i ] = new float[ columns2 ];
+    			for( unsigned int j = 0; j < columns2; ++j ) {
+       	 			matrix[ i ][ j ] = 0.0f;
+    			}
+			}
+			for (int i=0; i<rows2; i++) {
+				for (int j=0; j<columns2; j++){
+					cin >> matrix2[i][j];
+				}
+			}
+			if (columns1 == rows2) {
+				for( int i = 0; i < rows1; ++i ){
+    				for( int j = 0; j < columns1; ++j ){
+      		  			int result = 0;
+      		   			for( int k = 0; k < columns1; ++k ){	
+       			 			result += matrix1[i][k] * matrix2[k][j];
+      		   			}		
+      		  			matrix[i][j] = result;
+    		 		}
+  				}
+	 			std::cout << std::endl;	
+	 			k=1;
+			}
+			else cout << "An error has occured while reading input data";
+		}
+		else if(op=='T') {
+			for (int i=0; i<rows1; i++){
+				k=1;
+				for (int j=0; j<columns1; j++){		
+					matrix[j][i]=matrix1[i][j];
+				}
+			}
+		}
+		else if(op=='R') {
+			if (columns1==rows1){
+			k=1;	
+			int i, j, k;
+	        matrix=new float* [rows1];
+	        for(i=0; i<rows1; i++) {
+		    matrix[i]=new float [rows1];
+		    for(j=0; j<rows1; j++) matrix[i][j]=0;	
+		    matrix[i][i]=1; 
+	        }
+	        double a, b;
+	        for(i=0; i<rows1; i++) {
+		    a=matrix1[i][i];
+		    for(j=i+1; j<rows1; j++) {
+			    b=matrix1[j][i];
+			    for(k=0; k<rows1; k++) {
+				    matrix1[j][k]=matrix1[i][k]*b-matrix1[j][k]*a;			
+				    matrix[j][k]=matrix[i][k]*b-matrix[j][k]*a; 
+			    } 
+		    } 
+	    }
+	    double sum;
+	    for(i=0; i<rows1; i++) {
+		    for(j=rows1-1; j>=0; j--) {
+			    sum=0;
+			    for(k=rows1-1;k>j;k--){
+				    sum+=matrix1[j][k]*matrix[k][i];
+				    if(matrix1[j][j]==0) {
+					    for(i=0;i<rows1;i++){
+						    delete []matrix[i];
+						    delete []matrix;		
+						    return 0; 
+					    }
+				    }
+			    }	
+		    matrix[j][i]=(matrix[j][i]-sum)/matrix1[j][j]; 
+		    } 
+	    }	
+	    
+    }	
+
+			else cout << "An error has occured while reading input data";
+		}
+	cout << endl;
+	if (op == 'T') {
+		for (int i=0; i<columns1; i++){
+			for (int j=0; j<rows1; j++){
+				cout << matrix[i][j] << ' ';
+			}	
+			cout << endl;
+		}
+	}
+	else {
+		if (k==1){
+			for (int i=0; i<rows1; i++){
+				for (int j=0; j<columns1; j++){
+					cout << matrix[i][j] << ' ';
+				}
+				cout << endl;
+			}
+		}	
+	}	
+	cin.get();
+	return 0;
 }
