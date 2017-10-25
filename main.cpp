@@ -1,42 +1,42 @@
 #include <iostream>
 using namespace std;
-float **matrix, **matrix1, **matrix2;
+float **matr, **matr1, **matr2;
 int rows1, rows2, columns1, columns2;
 char op, k;
 int main ()
 {
-	float ** matrix;
+	float ** matr;
 	cin >> rows1;
 	op=cin.get();
 	cin >> columns1;
-	float ** matrix1 = new float *[ rows1 ];
+	float ** matr1 = new float *[ rows1 ];
 	for( unsigned int i = 0; i < rows1; ++i ) {
-    	matrix1[ i ] = new float[ columns1 ];
+    	matr1[ i ] = new float[ columns1 ];
     	for( unsigned int j = 0; j < columns1; ++j ) {		
-       	 matrix1[ i ][ j ] = 0.0f;
+       	 matr1[ i ][ j ] = 0.0f;
     	}
 	}
 	for (int i=0; i<rows1; i++) {
 		for (int j=0; j<columns1; j++){		
-			cin >> matrix1[i][j];
+			cin >> matr1[i][j];
 		}
 	}
 	cin >> op;
 	if (op == 'T') {
-		matrix = new float *[ columns1 ];
+		matr = new float *[ columns1 ];
 		for( unsigned int i = 0; i < columns1; ++i ) {
-    		matrix[ i ] = new float[ rows1 ];
+    		matr[ i ] = new float[ rows1 ];
     		for( unsigned int j = 0; j < rows1; ++j ) {	
-       	 		matrix[ i ][ j ] = 0.0f;
+       	 		matr[ i ][ j ] = 0.0f;
     		}
 		}
 	}
 	else {
-		matrix = new float *[ rows1 ];
+		matr = new float *[ rows1 ];
 		for( unsigned int i = 0; i < rows1; ++i ) {
-    		matrix[ i ] = new float[ columns1 ];
+    		matr[ i ] = new float[ columns1 ];
     		for( unsigned int j = 0; j < columns1; ++j ) {		
-       	 		matrix[ i ][ j ] = 0.0f;
+       	 		matr[ i ][ j ] = 0.0f;
     		}
 		}
 	}
@@ -44,23 +44,23 @@ int main ()
 			cin >> rows2;
 			op=cin.get();
 			cin >> columns2;
-			float ** matrix2 = new float *[ rows2 ];
+			float ** matr2 = new float *[ rows2 ];
 			for( unsigned int i = 0; i < rows2; ++i ) {
-    			matrix2[ i ] = new float[ columns2 ];
+    			matr2[ i ] = new float[ columns2 ];
     			for( unsigned int j = 0; j < columns2; ++j ) {
-       	 			matrix[ i ][ j ] = 0.0f;
+       	 			matr[ i ][ j ] = 0.0f;
     			}
 			}
 			for (int i=0; i<rows2; i++) {
 				for (int j=0; j<columns2; j++){
-					cin >> matrix2[i][j];
+					cin >> matr2[i][j];
 				}
 			}
 			if (rows1 == rows2 && columns1 == columns2){
 				k=1;
 				for (int i = 0; i<rows1; i++){
 	 				for (int j = 0; j<columns1; j++){		
-	 		  			matrix[i][j] = matrix1[i][j]+matrix2[i][j];
+	 		  			matr[i][j] = matr1[i][j]+matr2[i][j];
 					}
 				}
 			}
@@ -71,23 +71,23 @@ int main ()
 			cin >> rows2;
 			op=cin.get();
 			cin >> columns2;
-			float ** matrix2 = new float *[ rows2 ];
+			float ** matr2 = new float *[ rows2 ];
 			for( unsigned int i = 0; i < rows2; ++i ) {
-    			matrix2[ i ] = new float[ columns2 ];
+    			matr2[ i ] = new float[ columns2 ];
     			for( unsigned int j = 0; j < columns2; ++j ) {
-       	 			matrix[ i ][ j ] = 0.0f;
+       	 			matr[ i ][ j ] = 0.0f;
     			}
 			}
 			for (int i=0; i<rows2; i++) {
 				for (int j=0; j<columns2; j++){
-					cin >> matrix2[i][j];
+					cin >> matr2[i][j];
 				}
 			}
 			if (rows1 == rows2 && columns1 == columns2){
 				k=1;
 				for (int i = 0; i<rows1; i++){
 	 				for (int j = 0; j<columns1; j++){		
-	 		  			matrix[i][j] = matrix1[i][j]-matrix2[i][j];
+	 		  			matr[i][j] = matr1[i][j]-matr2[i][j];
 					}
 				}
 			}
@@ -97,16 +97,16 @@ int main ()
 			cin >> rows2;
 			op=cin.get();
 			cin >> columns2;
-			float ** matrix2 = new float *[ rows2 ];
+			float ** matr2 = new float *[ rows2 ];
 			for( unsigned int i = 0; i < rows2; ++i ) {
-    			matrix2[ i ] = new float[ columns2 ];
+    			matr2[ i ] = new float[ columns2 ];
     			for( unsigned int j = 0; j < columns2; ++j ) {
-       	 			matrix[ i ][ j ] = 0.0f;
+       	 			matr[ i ][ j ] = 0.0f;
     			}
 			}
 			for (int i=0; i<rows2; i++) {
 				for (int j=0; j<columns2; j++){
-					cin >> matrix2[i][j];
+					cin >> matr2[i][j];
 				}
 			}
 			if (columns1 == rows2) {
@@ -114,12 +114,12 @@ int main ()
     				for( int j = 0; j < columns1; ++j ){
       		  			int result = 0;
       		   			for( int k = 0; k < columns1; ++k ){	
-       			 			result += matrix1[i][k] * matrix2[k][j];
+       			 			result += matr1[i][k] * matr2[k][j];
       		   			}		
-      		  			matrix[i][j] = result;
+      		  			matr[i][j] = result;
     		 		}
   				}
-	 			std::cout << std::endl;	
+	 			cout << endl;	
 	 			k=1;
 			}
 			else cout << "An error has occured while reading input data";
@@ -128,7 +128,7 @@ int main ()
 			for (int i=0; i<rows1; i++){
 				k=1;
 				for (int j=0; j<columns1; j++){		
-					matrix[j][i]=matrix1[i][j];
+					matr[j][i]=matr1[i][j];
 				}
 			}
 		}
@@ -136,19 +136,19 @@ int main ()
 			if (columns1==rows1){
 			k=1;	
 			int i, j, k;
-	        matrix=new float* [rows1];
+	        matr=new float* [rows1];
 	        for(i=0; i<rows1; i++) {
-		    matrix[i]=new float [rows1];
-		    for(j=0; j<rows1; j++) matrix[i][j]=0;	
-		    matrix[i][i]=1; 
+		    matr[i]=new float [rows1];
+		    for(j=0; j<rows1; j++) matr[i][j]=0;	
+		    matr[i][i]=1; 
 	        }
 	        double a, b;
 	        for(i=0; i<rows1; i++) {
-		    a=matrix1[i][i];
+		    a=matr1[i][i];
 		    for(j=i+1; j<rows1; j++) {
-			    b=matrix1[j][i];
+			    b=matr1[j][i];
 			    for(k=0; k<rows1; k++) {
-				    matrix1[j][k]=matrix1[i][k]*b-matrix1[j][k]*a;			
+				    matr1[j][k]=matr1[i][k]*b-matr1[j][k]*a;			
 				    matrix[j][k]=matrix[i][k]*b-matrix[j][k]*a; 
 			    } 
 		    } 
@@ -158,16 +158,16 @@ int main ()
 		    for(j=rows1-1; j>=0; j--) {
 			    sum=0;
 			    for(k=rows1-1;k>j;k--){
-				    sum+=matrix1[j][k]*matrix[k][i];
-				    if(matrix1[j][j]==0) {
+				    sum+=matr1[j][k]*matr[k][i];
+				    if(matr1[j][j]==0) {
 					    for(i=0;i<rows1;i++){
-						    delete []matrix[i];
-						    delete []matrix;		
+						    delete []matr[i];
+						    delete []matr;		
 						    return 0; 
 					    }
 				    }
 			    }	
-		    matrix[j][i]=(matrix[j][i]-sum)/matrix1[j][j]; 
+		    matr[j][i]=(matr[j][i]-sum)/matr1[j][j]; 
 		    } 
 	    }	
 	    
@@ -179,7 +179,7 @@ int main ()
 	if (op == 'T') {
 		for (int i=0; i<columns1; i++){
 			for (int j=0; j<rows1; j++){
-				cout << matrix[i][j] << ' ';
+				cout << matr[i][j] << ' ';
 			}	
 			cout << endl;
 		}
@@ -188,7 +188,7 @@ int main ()
 		if (k==1){
 			for (int i=0; i<rows1; i++){
 				for (int j=0; j<columns1; j++){
-					cout << matrix[i][j] << ' ';
+					cout << matr[i][j] << ' ';
 				}
 				cout << endl;
 			}
