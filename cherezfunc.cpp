@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-float ** readmatr (int rows1, int columns1, float** matr) {
+float ** readmatr (unsigned int rows1,unsigned int columns1, float** matr) {
 	matr = new float *[ rows1 ];
 	for( unsigned int i = 0; i < rows1; ++i ) {
 	 	matr[ i ] = new float[ columns1 ];
@@ -8,8 +8,8 @@ float ** readmatr (int rows1, int columns1, float** matr) {
 	       	 	matr[ i ][ j ] = 0.0f;
 	    	}
 	}
-	for (int i=0; i<rows1; i++) {	
-		for (int j=0; j<columns1; j++){
+	for (unsigned int i=0; i<rows1; i++) {	
+		for (unsigned int j=0; j<columns1; j++){
 			cin >> matr[i][j];
 		}
 	}
@@ -19,8 +19,8 @@ bool pl (float **matr1, int rows1, int columns1, float **matr2, int rows2, int c
 	bool succ=0;
 	if (rows1 == rows2 && columns1 == columns2){	
 		succ=1;
-		for (int i = 0; i<rows3; i++){	
-	 		for (int j = 0; j<columns3; j++){
+		for (unsigned int i = 0; i<rows3; i++){	
+	 		for (unsigned int j = 0; j<columns3; j++){
 	 		  	matr[i][j] = matr1[i][j]+matr2[i][j];
 			}
 		}
@@ -31,8 +31,8 @@ bool min (float **matr1, int rows1, int columns1, float **matr2, int rows2, int 
 	bool succ=0;
 	if (rows1 == rows2 && columns1 == columns2){	
 		succ=1;
-		for (int i = 0; i<rows3; i++){	
-	 		for (int j = 0; j<columns3; j++){
+		for (unsigned int i = 0; i<rows3; i++){	
+	 		for (unsigned int j = 0; j<columns3; j++){
 	 		  	matr[i][j] = matr1[i][j]-matr2[i][j];
 			}
 		}
@@ -42,8 +42,8 @@ bool min (float **matr1, int rows1, int columns1, float **matr2, int rows2, int 
 bool umn (float **matr1, int rows1, int columns1, float **matr2, int rows2, int columns2, float ** matr, int rows3, int columns3) {	
 	bool succ=0;
 	if (columns1 == rows2) {	
-		for( int i = 0; i < rows3; ++i ){
-    			for( int j = 0; j < columns3; ++j ){
+		for(unsigned int i = 0; i < rows3; ++i ){
+    			for(unsigned int j = 0; j < columns3; ++j ){
       		  		int result = 0;
       		   		for( int k = 0; k < columns3; ++k ){
        			 		result += matr1[i][k] * matr2[k][j];
@@ -57,7 +57,7 @@ bool umn (float **matr1, int rows1, int columns1, float **matr2, int rows2, int 
 	return succ;	
 }
 float** obrmat(int x, float **mass, float **Obrmatr) {	
-	int i, j, k;
+	unsigned int i, j, k;
 	Obrmatr=new float* [x];
 	for(i=0; i<x; i++) {
 		Obrmatr[i]=new float [x];
