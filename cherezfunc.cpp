@@ -16,7 +16,7 @@ float ** readmatr (unsigned int rows1,unsigned int columns1, float** matr) {
 	return matr;
 }
 bool pl (float **matr1, int rows1, int columns1, float **matr2, int rows2, int columns2, float ** matr, int rows3, int columns3) {	
-	bool succ=0;
+	bool succ=0.0f;
 	if (rows1 == rows2 && columns1 == columns2){	
 		succ=1;
 		for (unsigned int i = 0; i<rows3; i++){	
@@ -28,7 +28,7 @@ bool pl (float **matr1, int rows1, int columns1, float **matr2, int rows2, int c
 	return succ;
 }
 bool min (float **matr1, int rows1, int columns1, float **matr2, int rows2, int columns2, float ** matr, int rows3, int columns3) {	
-	bool succ=0;
+	bool succ=0.0f;
 	if (rows1 == rows2 && columns1 == columns2){	
 		succ=1;
 		for (unsigned int i = 0; i<rows3; i++){	
@@ -40,7 +40,7 @@ bool min (float **matr1, int rows1, int columns1, float **matr2, int rows2, int 
 	return succ;	
 }
 bool umn (float **matr1, int rows1, int columns1, float **matr2, int rows2, int columns2, float ** matr, int rows3, int columns3) {	
-	bool succ=0;
+	bool succ=0.0f;
 	if (columns1 == rows2) {	
 		for(unsigned int i = 0; i < rows3; ++i ){
     			for(unsigned int j = 0; j < columns3; ++j ){
