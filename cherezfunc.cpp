@@ -82,10 +82,10 @@ float** obrmat(int x, float **mass, float **Obrmatr) {
 			for(k=x-1;k>j;k--){
 				sum+=mass[j][k]*Obrmatr[k][i];
 				if(mass[j][j]==0) {
-					for(i=0;i<x;i++){
-						delete []Obrmatr[i];
-						delete []Obrmatr;
-					}
+					for( unsigned int i = 0; i < x; ++i ) {
+                    delete [] Obrmatr[ i ];
+                    }
+                    delete [] Obrmatr; 
 				}
 			}
 			Obrmatr[j][i]=(Obrmatr[j][i]-sum)/mass[j][j]; 
