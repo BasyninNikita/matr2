@@ -56,6 +56,65 @@ bool umn (float **matr1, int rows1, int columns1, float **matr2, int rows2, int 
 	}
 	return succ;	
 }
+void minim(float ** matr, float **newmat, unsigned int i,unsigned int j, unsigned int N)
+{
+	unsigned int k = 0; unsigned int  g;
+	for (unsigned int h = 0;  h<N -1; h++) { 		
+		if (h == i){
+			k = 1;
+		}
+			g = 0;
+		for (unsigned int v = 0; v< N - 1; v++) {
+			if (v == j){
+				g = 1;
+			}
+			newmat[ h ][ v ] = matr[ h + k ][ v + g ];
+		}
+	}
+}
+float opredelitel(float ** matr, unsigned int N)
+{
+	unsigned int i=0;
+	float opr=0;
+	unsigned int M = N - 1;
+	char step = 1;
+	float ** newmat;
+	newmat = new float *[N];
+	for (unsigned int i = 0; i < N; i++){
+		newmat[i] = new float[N];
+	}
+	if (N < 1){
+		for (unsigned int i = 0; i < N; i++){
+		    delete[] newmat[i];
+	    }
+	    delete newmat;
+		cout << "Error";
+	}
+	if (N == 1){
+		opr = matr[0][0];
+		return(opr);
+	}
+	if (N == 2){
+		opr = matr[0][0] * matr[1][1] - (matr[1][0] * matr[0][1]);
+		for (unsigned int i = 0; i < N; i++){
+		    delete[] newmat[i];
+	    }
+	    delete newmat;
+		return(opr);
+	}
+	if (N>2){
+		for (i = 0; i<N; i++){
+			minim(matr, newmat, i, 0, N);
+			opr = opr + step * matr[i][0] * opredelitel(newmat, M);
+			step = -step;
+		}
+	}
+	for (unsigned int i = 0; i < N; i++){
+		    delete[] newmat[i];
+	    }
+	    delete newmat;
+	return(opr);
+}
 float** obrmat(int x, float **mass, float **Obrmatr) {	
 	int i, j, k;
 	Obrmatr=new float* [x];
@@ -95,7 +154,7 @@ float** obrmat(int x, float **mass, float **Obrmatr) {
 }
 float **matr, **matr1, **matr2;
 	int main () {
-		int rows1, rows2, rows3, columns1, columns2, columns3;
+		unsigned int rows1, rows2, rows3, columns1, columns2, columns3;
 		char op;
 		bool k=0;
 		cin >> rows1;
@@ -154,11 +213,13 @@ float **matr, **matr1, **matr2;
 				}
 			}
 			else if(op== 'R') {
-				if (columns1==rows1){
+				if (columns1==rows1){	float opr = opredelitel(matr1, columns1);
+                    if(opr!=0){
 					k=1;
 					matr=obrmat(rows1, matr1, matr);	
 				}
 				else cout << "An error has occured while reading input data";		
+			}
 			}
 		cout << endl;
 		if (op == 'T') {
