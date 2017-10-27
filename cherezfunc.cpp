@@ -1,104 +1,103 @@
 #include <iostream>
 using namespace std;
-	float ** readmatr (int rows1, int columns1, float** matr) {
-		matr = new float *[ rows1 ];
-		for( unsigned int i = 0; i < rows1; ++i ) {
-	    		matr[ i ] = new float[ columns1 ];
-	    		for( unsigned int j = 0; j < columns1; ++j ) {
-	       	 		matr[ i ][ j ] = 0.0f;
-	    		}
+float ** readmatr (int rows1, int columns1, float** matr) {
+	matr = new float *[ rows1 ];
+	for( unsigned int i = 0; i < rows1; ++i ) {
+	 	matr[ i ] = new float[ columns1 ];
+	    	for( unsigned int j = 0; j < columns1; ++j ) {
+	       	 	matr[ i ][ j ] = 0.0f;
+	    	}
+	}
+	for (int i=0; i<rows1; i++) {	
+		for (int j=0; j<columns1; j++){
+			cin >> matr[i][j];
 		}
-		for (int i=0; i<rows1; i++) {	
-			for (int j=0; j<columns1; j++){
-				cin >> matr[i][j];
+	}
+	return matr;
+}
+bool pl (float **matr1, int rows1, int columns1, float **matr2, int rows2, int columns2, float ** matr, int rows3, int columns3) {	
+	bool succ=0;
+	if (rows1 == rows2 && columns1 == columns2){	
+		succ=1;
+		for (int i = 0; i<rows3; i++){	
+	 		for (int j = 0; j<columns3; j++){
+	 		  	matr[i][j] = matr1[i][j]+matr2[i][j];
 			}
 		}
-		return matr;
 	}
-	bool pl (float **matr1, int rows1, int columns1, float **matr2, int rows2, int columns2, float ** matr, int rows3, int columns3) {	
-		bool k=0;
-		if (rows1 == rows2 && columns1 == columns2){	
-			k=1;
-			for (int i = 0; i<rows3; i++){	
-		 		for (int j = 0; j<columns3; j++){
-		 		  	matr[i][j] = matr1[i][j]+matr2[i][j];
-				}
+	return succ;
+}
+bool min (float **matr1, int rows1, int columns1, float **matr2, int rows2, int columns2, float ** matr, int rows3, int columns3) {	
+	bool succ=0;
+	if (rows1 == rows2 && columns1 == columns2){	
+		succ=1;
+		for (int i = 0; i<rows3; i++){	
+	 		for (int j = 0; j<columns3; j++){
+	 		  	matr[i][j] = matr1[i][j]-matr2[i][j];
 			}
 		}
-		return k;
 	}
-	bool min (float **matr1, int rows1, int columns1, float **matr2, int rows2, int columns2, float ** matr, int rows3, int columns3) {	
-		bool k=0;
-		if (rows1 == rows2 && columns1 == columns2){	
-			k=1;
-			for (int i = 0; i<rows3; i++){	
-		 		for (int j = 0; j<columns3; j++){
-		 		  	matr[i][j] = matr1[i][j]-matr2[i][j];
-				}
-			}
-		}
-		return k;	
+	return succ;	
+}
+bool umn (float **matr1, int rows1, int columns1, float **matr2, int rows2, int columns2, float ** matr, int rows3, int columns3) {	
+	bool succ=0;
+	if (columns1 == rows2) {	
+		for( int i = 0; i < rows3; ++i ){
+    			for( int j = 0; j < columns3; ++j ){
+      		  		int result = 0;
+      		   		for( int k = 0; k < columns3; ++k ){
+       			 		result += matr1[i][k] * matr2[k][j];
+      		   		}
+      		  		matr[i][j] = result;
+    			}
+  		}
+	 	cout << endl;
+	 	succ=1;
 	}
-	bool umn (float **matr1, int rows1, int columns1, float **matr2, int rows2, int columns2, float ** matr, int rows3, int columns3) {	
-		bool k=0;
-		if (columns1 == rows2) {	
-			for( int i = 0; i < rows3; ++i ){
-	    			for( int j = 0; j < columns3; ++j ){
-	      		  		int result = 0;
-	      		   		for( int k = 0; k < columns3; ++k ){
-	       			 		result += matr1[i][k] * matr2[k][j];
-	      		   		}
-	      		  		matr[i][j] = result;
-	    			}
-	  		}
-		 	cout << endl;
-		 	k=1;
-		}
-		return k;	
+	return succ;	
+}
+float** obrmat(int x, float **mass, float **Obrmatr) {	
+	int i, j, k;
+	Obrmatr=new float* [x];
+	for(i=0; i<x; i++) {
+		Obrmatr[i]=new float [x];
+		for(j=0; j<x; j++) {Obrmatr[i][j]=0;}
+		Obrmatr[i][i]=1; 
 	}
-	float** obrmat(int x, float **mass, float **Obrmatr) {	
-		int i, j, k;
-		Obrmatr=new float* [x];
-		for(i=0; i<x; i++) {
-			Obrmatr[i]=new float [x];
-			for(j=0; j<x; j++) {Obrmatr[i][j]=0;}
-			Obrmatr[i][i]=1; 
-		}
-		float a, b;
-		for(i=0; i<x; i++) {
-			a=mass[i][i];
-			for(j=i+1; j<x; j++) {
-				b=mass[j][i];
-				for(k=0; k<x; k++) {
-					mass[j][k]=mass[i][k]*b-mass[j][k]*a;
-					Obrmatr[j][k]=Obrmatr[i][k]*b-Obrmatr[j][k]*a; 
-				} 
-			} 
-		}
-		float sum;
-		for(i=0; i<x; i++) {
-			for(j=x-1; j>=0; j--) {
-				sum=0;
-				for(k=x-1;k>j;k--){
-					sum+=mass[j][k]*Obrmatr[k][i];
-					if(mass[j][j]==0) {
-						for(i=0;i<x;i++){
-							delete []Obrmatr[i];
-							delete []Obrmatr;
-							return 0; 
-						}
-					}
-				}
-				Obrmatr[j][i]=(Obrmatr[j][i]-sum)/mass[j][j]; 
+	float a, b;
+	for(i=0; i<x; i++) {
+		a=mass[i][i];
+		for(j=i+1; j<x; j++) {
+			b=mass[j][i];
+			for(k=0; k<x; k++) {
+				mass[j][k]=mass[i][k]*b-mass[j][k]*a;
+				Obrmatr[j][k]=Obrmatr[i][k]*b-Obrmatr[j][k]*a; 
 			} 
 		} 
-		return Obrmatr; 
 	}
-	float **matr, **matr1, **matr2;
-	int rows1, rows2, rows3, columns1, columns2, columns3;
-	char op;
-	bool k=0;
+	float sum;
+	for(i=0; i<x; i++) {
+		for(j=x-1; j>=0; j--) {
+			sum=0;
+			for(k=x-1;k>j;k--){
+				sum+=mass[j][k]*Obrmatr[k][i];
+				if(mass[j][j]==0) {
+					for(i=0;i<x;i++){
+						delete []Obrmatr[i];
+						delete []Obrmatr;
+					}
+				}
+			}
+			Obrmatr[j][i]=(Obrmatr[j][i]-sum)/mass[j][j]; 
+		} 
+	} 
+	return Obrmatr; 
+}
+float **matr, **matr1, **matr2;
 	int main () {
+		int rows1, rows2, rows3, columns1, columns2, columns3;
+		char op;
+		bool k=0;
 		cin >> rows1;
 		op=cin.get();
 		cin >> columns1;
