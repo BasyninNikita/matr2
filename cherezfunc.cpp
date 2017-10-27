@@ -218,8 +218,9 @@ float **matr, **matr1, **matr2;
 					k=1;
 					matr=obrmat(rows1, matr1, matr);	
 				}
+				else cout<<"There is no reverse matrix";return 0;
+				}
 				else cout << "An error has occured while reading input data";		
-			}
 			}
 		cout << endl;
 		if (op == 'T') {
