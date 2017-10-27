@@ -57,7 +57,7 @@ bool umn (float **matr1, int rows1, int columns1, float **matr2, int rows2, int 
 	return succ;	
 }
 float** obrmat(int x, float **mass, float **Obrmatr) {	
-	unsigned int i, j, k;
+	int i, j, k;
 	Obrmatr=new float* [x];
 	for(i=0; i<x; i++) {
 		Obrmatr[i]=new float [x];
